@@ -1,9 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Move.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelManager.cs">
     <Files>
-      <File FileName="..\..\2DTests\Unity2DTests\Assets\2DTests\Scripts\EditModeGridSnap.cs" Line="16" Column="37" />
-      <File FileName="Assets\Scripts\Move.cs" Line="18" Column="12" />
+      <File FileName="Assets\Scripts\LevelManager.cs" Line="24" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
