@@ -9,6 +9,9 @@ public class Move : MonoBehaviour
 	public float speed = 16f;
 	public float maxSpeed = 50f;
 	public bool debugMessages = true;
+	public float sprintSpeed = 32f;
+	public float sprintDuration = 3f;
+	public float sprintCooldown = 5f;
 
 	public KeyCode upKey = KeyCode.W;
 	public KeyCode downKey = KeyCode.S;
@@ -23,6 +26,8 @@ public class Move : MonoBehaviour
 	private Collider2D _wallCollider;
 	private Vector2 _lastWallEnd;
 	private bool _alive = true;
+	private float _originalSpeed;
+	private bool _canSprint = true;
 
 	#endregion
 		
@@ -32,12 +37,20 @@ public class Move : MonoBehaviour
 	{
 		_myRigidbody = GetComponent<Rigidbody2D>();
 		_myRigidbody.velocity = Vector2.zero;
+		_originalSpeed = speed;
 	}
 
 	void Update () 
 	{
 		if(_alive)
 		{
+
+			if(Input.GetKeyDown (KeyCode.LeftShift) && _canSprint == true)
+			{
+				Debug.Log ("Sprint active!");
+				StartCoroutine (Sprint ());
+			}
+
 			if(Input.GetKeyDown (upKey))
 			{
 				_myRigidbody.velocity = Vector2.up * speed;
@@ -121,6 +134,20 @@ public class Move : MonoBehaviour
 	public void SetSpeedViaNormal(float normalizedSpeed)
 	{
 		speed = maxSpeed * normalizedSpeed;
+	}
+
+	IEnumerator Sprint()
+	{
+		speed = sprintSpeed;
+		_canSprint = false;
+		
+		yield return new WaitForSeconds(sprintDuration);
+		
+		speed = _originalSpeed;
+		
+		yield return new WaitForSeconds(sprintCooldown - sprintDuration);
+		
+		_canSprint = true;
 	}
 
 	#endregion
