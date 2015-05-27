@@ -23,7 +23,7 @@ public class Move : MonoBehaviour
 	private Collider2D _wallCollider;
 	private Vector2 _lastWallEnd;
 	private bool _alive = true;
-
+	
 	#endregion
 		
 	#region Events
@@ -87,7 +87,11 @@ public class Move : MonoBehaviour
 	{
 		if(_alive == false)
 		{
-			GUI.Box ( new Rect(Screen.width / 2 - 75, Screen.height / 2 - 12 , 150, 25), gameObject.name + "has lost!");
+			GUI.Box ( new Rect(Screen.width / 2 - 75,
+		                       Screen.height / 2 - 12 ,
+			                   150, 
+			                   25), 
+		         			   gameObject.name + "has lost!");
 		}
 	}
 
@@ -122,6 +126,6 @@ public class Move : MonoBehaviour
 	{
 		speed = maxSpeed * normalizedSpeed;
 	}
-
+	
 	#endregion
 }
