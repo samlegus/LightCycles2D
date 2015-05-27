@@ -15,6 +15,9 @@ public class Move : MonoBehaviour
 	public KeyCode leftKey = KeyCode.A;
 	public KeyCode rightKey = KeyCode.D;
 
+	public float speedIncreasePerFrame = .005f;
+	public float maxSpeedMultiplier = 25.0f;
+	
 	#endregion
 
 	#region Private Variables
@@ -23,6 +26,7 @@ public class Move : MonoBehaviour
 	private Collider2D _wallCollider;
 	private Vector2 _lastWallEnd;
 	private bool _alive = true;
+	private float _speedMultiplier = 1.0f;
 	
 	#endregion
 		
@@ -38,6 +42,13 @@ public class Move : MonoBehaviour
 	{
 		if(_alive)
 		{
+			speed = speed * _speedMultiplier;
+			
+			if(_speedMultiplier <= maxSpeedMultiplier)
+			{
+				_speedMultiplier += speedIncreasePerFrame * Time.deltaTime  ;
+			}
+
 			if(Input.GetKeyDown (upKey))
 			{
 				_myRigidbody.velocity = Vector2.up * speed;
